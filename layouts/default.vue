@@ -8,6 +8,19 @@
       </div>
       <Menu />
     </header>
+    <main class="p-2 mt-10"></main>
     <slot />
   </div>
 </template>
+
+<script setup>
+useHead({
+  titleTemplate: '%s - Moe Kahn',
+})
+</script>
+
+<style>
+body {
+  font-family: Monaco, Monaco;
+}
+</style>

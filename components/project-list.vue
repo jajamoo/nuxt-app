@@ -9,7 +9,7 @@
         <a :href="repository.html_url" target="_blank">
           <div class="flex items-center justify-between">
             <div class="font-semibold">{{ repository.name }}</div>
-            <div class="font-semibold">{{ repository.stargazers_count }} * </div>
+            <div class="font-semibold">{{ repository.stargazers_count }} ★ </div>
           </div>
           <p class="text-sm">
             {{repository.description}}

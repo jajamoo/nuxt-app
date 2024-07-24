@@ -1,18 +1,14 @@
-<!-- components/Board.vue -->
 <template>
-  <div class="board">
-    <draggable :list="columns" class="column-list" group="kanban-columns" @end="handleColumnEnd">
-      <template #item="{ element, index }">
-        <div class="column">
-          <h2>{{ element.title }}</h2>
-          <draggable :list="element.tasks" class="tasks-list" group="kanban-tasks" @end="handleTaskEnd(index)">
-            <template #item="{ element }">
-              <div class="task">
-                {{ element }}
-              </div>
-            </template>
-          </draggable>
-        </div>
+  <div class="kanban-column">
+    <h3>{{ column.name }}</h3>
+    <draggable
+        v-model="column.cards"
+        group="cards"
+        @change="handleChange"
+        :data-column-index="columnIndex"
+    >
+      <template #item="{ element }">
+        <KanbanCard :card="element" />
       </template>
     </draggable>
   </div>
@@ -20,51 +16,35 @@
 
 <script>
 import draggable from 'vuedraggable';
+import KanbanCard from './KanbanCard.vue';
 
 export default {
   components: {
     draggable,
+    KanbanCard
   },
-  props: ['columns'],
+  props: {
+    column: Object,
+    columnIndex: Number
+  },
   methods: {
-    handleColumnEnd(event) {
-      // Update columns after column drag-and-drop
-      this.columns = event;
-    },
-    handleTaskEnd(columnIndex) {
-      return (event) => {
-        // Update tasks within a specific column after task drag-and-drop
-        this.$set(this.columns[columnIndex], 'tasks', event.slice()); // Ensure reactivity
-      };
-    },
-  },
+    handleChange(event) {
+      this.$emit('moveCard', {
+        card: event.item,
+        fromColumnIndex: event.from.dataset.columnIndex,
+        toColumnIndex: event.to.dataset.columnIndex,
+        toCardIndex: event.newIndex
+      });
+    }
+  }
 };
 </script>
 
-<style scoped>
-.board {
-  display: flex;
-  overflow-x: auto; /* Enable horizontal scrolling if needed */
-}
-
-.column {
-  min-width: 250px; /* Adjust as needed */
+<style>
+.kanban-column {
+  width: 30%;
+  background: #f4f4f4;
   padding: 10px;
-  border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: #f9f9f9;
-  margin-right: 10px; /* Space between columns */
-}
-
-.tasks-list {
-  margin-top: 10px;
-}
-
-.task {
-  margin-bottom: 10px;
-  padding: 8px;
-  border: 1px solid #eee;
-  border-radius: 5px;
-  background-color: #fff;
 }
 </style>

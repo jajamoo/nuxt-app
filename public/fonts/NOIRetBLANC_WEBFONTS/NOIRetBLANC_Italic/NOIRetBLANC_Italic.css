@@ -1,0 +1,9 @@
+/* Webfont: NOIRetBLANCItalic */@font-face {
+    font-family: 'NOIRetBLANCItalic';
+    src: url('NOIRetBLANC_Italic.woff2') format('woff2'), /* Modern Browsers */
+         url('NOIRetBLANC_Italic.otf') format('opentype'); /* Safari, Android, iOS */
+             font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+

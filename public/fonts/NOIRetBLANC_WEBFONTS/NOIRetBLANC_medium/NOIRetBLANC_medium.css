@@ -1,0 +1,9 @@
+/* Webfont: NOIRetBLANCMedium */@font-face {
+    font-family: 'NOIRetBLANCMedium';
+    src: url('NOIRetBLANC_medium.woff2') format('woff2'), /* Modern Browsers */
+         url('NOIRetBLANC_medium.otf') format('opentype'); /* Safari, Android, iOS */
+             font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+

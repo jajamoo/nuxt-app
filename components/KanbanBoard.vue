@@ -1,5 +1,5 @@
 <template>
-  <div class="kanban-board" v-if="columns.length">
+  <div class="kanban-board">
     <KanbanColumn
         v-for="(column, index) in columns"
         :key="index"
@@ -8,14 +8,10 @@
         @moveCard="moveCard"
     />
   </div>
-  <div v-else>
-    Loading...
-  </div>
 </template>
 
 <script>
 import KanbanColumn from './KanbanColumn.vue';
-import {fetchProjectCards, getProjectColumns, fetchProjects} from '~/services/github.js';
 
 export default {
   components: {
@@ -23,25 +19,12 @@ export default {
   },
   data() {
     return {
-      columns: []
+      columns: [
+        { name: 'To Do', cards: [{ title: 'Task 1' }, { title: 'Task 2' }] },
+        { name: 'In Progress', cards: [{ title: 'Task 3' }] },
+        { name: 'Done', cards: [{ title: 'Task 4' }] }
+      ]
     };
-  },
-  async mounted() {
-    try {
-      const projects = await fetchProjects();
-      if (projects.length) {
-        // const projectId = projects[0].id;
-        const columnsData = await getProjectColumns(1);
-        this.columns = await Promise.all(
-            columnsData.map(async (column) => {
-              const cards = await fetchProjectCards(column.id);
-              return {...column, cards: cards.map(card => ({title: card.note}))};
-            })
-        );
-      }
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
   },
   methods: {
     moveCard({ card, fromColumnIndex, toColumnIndex, toCardIndex }) {

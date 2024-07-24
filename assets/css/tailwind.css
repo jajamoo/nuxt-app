@@ -1,0 +1,8 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@font-face {
+    font-family: 'Noir';
+    src: url('/public/fonts/NOIRetBLANC_WEBFONTS/NOIRetBLANC Regular/NOIRetBLANC.ttf') format('truetype');
+}

@@ -1,23 +1,14 @@
-// services/github.js
 import axios from 'axios';
 
 const githubApi = axios.create({
     baseURL: 'https://api.github.com',
     headers: {
         Authorization: `Bearer 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`,
-        Accept: 'application/vnd.github.v3+json'
+        'X-GitHub-Api-Version': '2022-11-28',
+        Accept: 'application/vnd.github+json'
     },
 });
 
-export const fetchProjects = async () => {
-    try {
-        const response = await api.get(`/repos/${owner}/${repo}/projects`);
-        return response.data;
-    } catch (error) {
-        console.error('Error fetching projects:', error);
-        throw error;
-    }
-};
 
 export const getProject = async (projectId) => {
     try {
@@ -26,7 +17,7 @@ export const getProject = async (projectId) => {
         return response.data;
     }
     catch (error) {
-        console.error('Error fetching projects:', error);
+        console.error('Error fetching projects:', error.message);
         throw error;
     }
 };

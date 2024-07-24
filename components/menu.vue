@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 </script>
 
 <template>
@@ -13,6 +12,9 @@
       </li>
       <li>
         <NuxtLink to="/projects" class="link">Projects</NuxtLink>
+      </li>
+      <li>
+        <NuxtLink to="/kanban" class="link">Diplomat</NuxtLink>
       </li>
     </ul>
   </nav>

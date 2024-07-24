@@ -20,7 +20,7 @@
 
 <script setup>
 useHead({
-  titleTemplate: '%s - Moe Kahn',
+  titleTemplate: '%s - Projects -',
 })
 </script>
 

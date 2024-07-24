@@ -4,7 +4,8 @@ export default defineNuxtConfig({
     devtools: {enabled: true},
     modules: [
         '@nuxtjs/tailwindcss',
-        '@nuxtjs/color-mode'
+        '@nuxtjs/color-mode',
+        // 'vuedraggable'
     ],
   colorMode: {
       classSuffix: ''
